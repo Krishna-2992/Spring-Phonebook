@@ -24,7 +24,7 @@
     </style>
   </head>
   <body>
- 
+
 
     <table border="1" width="80%" align="center">
       <tr>
@@ -45,6 +45,9 @@
           <h3>User Login</h3>
           <c:if test="${err!=null}">
               <p class="error">${err}</p>
+          </c:if>
+          <c:if test="${param.act eq 'lo'}">
+              <p class="success">Logout Successfully! Thanks for using contact application.</p>
           </c:if>
           <s:url var="url_login" value="/login" />
           <f:form action="login" modelAttribute="command">

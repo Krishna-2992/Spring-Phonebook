@@ -54,6 +54,12 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = {"/logout", "/admin/logout", "/user/logout"})
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:index?act=lo";
+    }
+
     @RequestMapping(value = "/user/dashboard")
     public String userDashboard() {
         return "dashboard_user"; // /WEB-INF/view/index.jsp

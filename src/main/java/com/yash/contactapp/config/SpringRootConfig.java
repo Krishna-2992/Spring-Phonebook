@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Configuration
-//@ComponentScan(basePackages = {"com.yash"})
+@ComponentScan(basePackages = {"com.yash.contactapp.dao", "com.yash.contactapp.service"})
 public class SpringRootConfig {
     //TODO: Services, DAO, DataSource, Email sender or some other business layer beans
 

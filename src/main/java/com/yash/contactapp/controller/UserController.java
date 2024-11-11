@@ -1,10 +1,12 @@
 package com.yash.contactapp.controller;
 
+import com.yash.contactapp.command.UserCommand;
 import com.yash.contactapp.exception.UserBlockedException;
 import com.yash.contactapp.command.LoginCommand;
 import com.yash.contactapp.domain.User;
 import com.yash.contactapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,10 +41,10 @@ public class UserController {
 
                 if(loggedInUser.getRole().equals(UserService.ROLE_ADMIN)) {
                     addUserInSession(loggedInUser, session);
-                    return "redirect:admin/dashboard";
+                    return "redirect:admin_dashboard";
                 } else if (loggedInUser.getRole().equals(UserService.ROLE_USER)) {
                     addUserInSession(loggedInUser, session);
-                    return "redirect:user/dashboard";
+                    return "redirect:user_dashboard";
                 } else {
                     m.addAttribute("err", "invalid user role");
                     return "index";
@@ -54,21 +56,44 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = {"/logout", "/admin/logout", "/user/logout"})
+    @RequestMapping(value = {"/logout"})
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:index?act=lo";
     }
 
-    @RequestMapping(value = "/user/dashboard")
+    @RequestMapping(value = "/user_dashboard")
     public String userDashboard() {
         return "dashboard_user"; // /WEB-INF/view/index.jsp
     }
 
-    @RequestMapping(value = "/admin/dashboard")
+    @RequestMapping(value = "/admin_dashboard")
     public String adminDashboard() {
         return "dashboard_admin"; // /WEB-INF/view/index.jsp
     }
+
+    @RequestMapping(value = "/reg_form")
+    public String registrationForm(Model m) {
+        UserCommand cmd = new UserCommand();
+        m.addAttribute("command", cmd);
+        return "reg_form";//JSP
+    }
+
+    @RequestMapping(value = "/register")
+    public String registerUser(@ModelAttribute("command") UserCommand cmd, Model m) {
+        try {
+            User user = cmd.getUser();
+            user.setRole(UserService.ROLE_USER);
+            user.setLoginStatus(UserService.LOGIN_STATUS_ACTIVE);
+            userService.register(user);
+            return "redirect:index?act=reg"; //Login Page
+        } catch (DuplicateKeyException e) {
+            e.printStackTrace();
+            m.addAttribute("err", "Username is already registered. Please select another username.");
+            return "reg_form";//JSP
+        }
+    }
+
 
     private void addUserInSession(User u, HttpSession session) {
         session.setAttribute("user", u);

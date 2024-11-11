@@ -11,9 +11,9 @@
 </c:if>
 <c:if test="${sessionScope.userId!=null && sessionScope.role == 1}">
     <%-- Admin is logged in : Admin Menu --%>
-    <a href="#">Home</a> | <a href="<s:url value="/admin/users"/>">User List</a> | <a href="logout">Logout</a>
+    <a href="#">Home</a> | <a href="<s:url value="/admin_users"/>">User List</a> | <a href="logout">Logout</a>
 </c:if>
 <c:if test="${sessionScope.userId!=null && sessionScope.role == 2}">
     <%-- General User is logged in : User Menu --%>
-    <a href="user/dashboard">Home</a> | <a href="user/contact_form">Add Contact</a> | <a href="user/clist">Contact List</a> | <a href="logout">Logout</a>
+    <a href="user_dashboard">Home</a> | <a href="user/contact_form">Add Contact</a> | <a href="user/clist">Contact List</a> | <a href="logout">Logout</a>
 </c:if>

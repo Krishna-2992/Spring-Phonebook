@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String handleLogin(@ModelAttribute("command") LoginCommand cmd,Model m, HttpSession session) {
+    public String handleLogin(@ModelAttribute("command") LoginCommand cmd, Model m, HttpSession session) {
         try {
             User loggedInUser = userService.login(cmd.getLoginName(), cmd.getPassword());
 

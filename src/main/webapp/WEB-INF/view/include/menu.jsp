@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@page session="true" %>
 <%@ page isELIgnored="false" %>
 
@@ -15,5 +16,5 @@
 </c:if>
 <c:if test="${sessionScope.userId!=null && sessionScope.role == 2}">
     <%-- General User is logged in : User Menu --%>
-    <a href="user_dashboard">Home</a> | <a href="user/contact_form">Add Contact</a> | <a href="user/clist">Contact List</a> | <a href="logout">Logout</a>
+    <a href="user_dashboard">Home</a> | <a href="user_contact_form">Add Contact</a> | <a href="user_clist">Contact List</a> | <a href="logout">Logout</a>
 </c:if>

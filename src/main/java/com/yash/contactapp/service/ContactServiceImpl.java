@@ -6,10 +6,12 @@ import com.yash.contactapp.domain.Contact;
 import com.yash.contactapp.rm.ContactRowMapper;
 import com.yash.contactapp.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 
+@Service
 public class ContactServiceImpl extends BaseDAO implements ContactService {
 
     @Autowired

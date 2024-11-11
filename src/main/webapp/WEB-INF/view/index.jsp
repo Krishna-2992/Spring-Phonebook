@@ -53,7 +53,7 @@
               <p class="success">User Registered Successfully. Please login</p>
           </c:if>
           <s:url var="url_login" value="/login" />
-          <f:form action="login" modelAttribute="command">
+          <f:form action="${url_login}" modelAttribute="command">
             <table border="1">
               <tr>
                 <td>Username</td>

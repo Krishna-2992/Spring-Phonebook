@@ -9,6 +9,7 @@ public interface ContactService {
     public void update(Contact c);
     public void delete(Integer contactId);
     public void delete(Integer[] contactIds);
+    public Contact findById(Integer contactId);
 
     /**
      * this method returns all user contact (user who is logged in)
@@ -23,5 +24,5 @@ public interface ContactService {
      * @param txt
      * @return
      */
-    public List<Contact> findUserContacts(Integer userId, String txt);
+    public List<Contact> findUserContact(Integer userId, String txt);
 }

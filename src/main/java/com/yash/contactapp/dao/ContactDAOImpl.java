@@ -41,14 +41,7 @@ public class ContactDAOImpl extends BaseDAO implements ContactDAO{
 
     @Override
     public void update(Contact c) {
-        String sql = "UPDATE contact " +
-                "SET name=:name," +
-                " phone=:phone," +
-                " email=:email," +
-                " address=:address," +
-                " remark=:remark," +
-                " WHERE contactId=:contactId";
-
+        String sql = "UPDATE contact SET name=:name, phone=:phone, email=:email, address=:address, remark=:remark WHERE contactId=:contactId";
         Map m = new HashMap();
         m.put("contactId", c.getContactId());
         m.put("name", c.getName());
@@ -56,7 +49,6 @@ public class ContactDAOImpl extends BaseDAO implements ContactDAO{
         m.put("email", c.getEmail());
         m.put("address", c.getAddress());
         m.put("remark", c.getRemark());
-
         getNamedParameterJdbcTemplate().update(sql, m);
     }
 

@@ -43,6 +43,22 @@
           <c:if test="${param.act eq 'sv'}">
               <p class="success">Contact Saved Successfully</p>
           </c:if>
+          <c:if test="${param.act eq 'del'}">
+                <p class="success">Contact Deleted Successfully</p>
+            </c:if>
+
+            <table width="100%">
+                <tr>
+                    <td align="left" >
+                        <form action="user_contact_search"/>
+                            <input type="text" name="freeText" value="${param.freeText}" placeholder="Enter Text To Search">
+                            <button>Find</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <form action="user_bulk_cdelete">
+            <button>Delete Selected Records</button> <br/><br/>
           <table border="1">
             <tr>
                 <th>SELECT</th>
@@ -70,16 +86,15 @@
                     <td>${c.email}</td>
                     <td>${c.address}</td>
                     <td>${c.remark}</td>
-                    <s:url var="url_del" value="/user/del_contact">
-                        <s:param name="cid" value="${c.contactId}"/>
-                    </s:url>
-                    <s:url var="url_edit" value="/user/edit_contact">
-                        <s:param name="cid" value="${c.contactId}"/>
-                    </s:url>
-                    <td><a href="${url_edit}">Edit</a> | <a href="${url_del}">Delete</a></td>
-                </tr>
+                    <td>
+                        <a href="<c:url value="/user_edit_contact?cid=${c.contactId}"/>">Edit</a> |
+                        <a href="<c:url value="/user_del_contact?cid=${c.contactId}"/>">Delete</a>
+                    </td>
+                    </tr>
             </c:forEach>
           </table>
+        </form>
+
         </td>
       </tr>
       <tr>

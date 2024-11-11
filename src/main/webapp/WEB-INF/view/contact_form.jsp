@@ -7,10 +7,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Contact form - Contact Application </title>
+        <title>Contact Form - Contact Application </title>
         <link href="static/css/style.css" rel="stylesheet" type="text/css"/>
-
     </head>
+    <body background="static/images/bg.jpg">
         <table border="1" width="80%" align="center">
             <tr>
                 <td height="80px">
@@ -31,7 +31,7 @@
                     <c:if test="${err!=null}">
                         <p class="error">${err}</p>
                     </c:if>
-                    <f:form action="save_contact" modelAttribute="command">
+                    <f:form action="user_save_contact" modelAttribute="command">
                         <table border="1">
                             <tr>
                                 <td>Name</td>
@@ -45,17 +45,17 @@
                                 <td>Email</td>
                                 <td><f:input path="email" /> </td>
                             </tr>
-                              <tr>
+                            <tr>
                                 <td>Address</td>
                                 <td><f:textarea path="address" /> </td>
                             </tr>
                             <tr>
                                 <td>Remark</td>
-                                <td><f:textarea path="remark" /></td>
+                                <td><f:textarea path="remark" /> </td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="right">
-                                    <button>Save</button> <br/>
+                                    <button>Save</button>
                                 </td>
                             </tr>
                         </table>

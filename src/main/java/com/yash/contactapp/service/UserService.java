@@ -13,6 +13,8 @@ public interface UserService {
     public static final Integer ROLE_ADMIN=1;
     public static final Integer ROLE_USER=2;
 
+    public Boolean isUsernameExist(String username);
+
     /**
      * method handles the user registration task.
      * @param u
